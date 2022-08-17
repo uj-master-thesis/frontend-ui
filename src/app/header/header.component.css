@@ -1,5 +1,5 @@
-header{
-  border-radius: 1px solid;
+header {
+  border-radius: 1px;
 }
 
 
@@ -10,17 +10,17 @@ header{
   width: 60px;
 }
 
-.microNews-text{
+.microNews-text {
   font-weight: 700;
   height: 50px;
   width: 50px;
 }
 
-.logo{
+.logo {
   text-decoration: none;
 }
 
-.login, .sign-up{
+.login, .sign-up {
   background-color: transparent;
   color: #0079D3;
   fill: #0079D3;
@@ -38,12 +38,12 @@ header{
   opacity: 1;
 }
 
-.sign-up{
+.sign-up {
   background-color: #0079D3;
   border-color: #0079D3;
   color: aliceblue;
 }
 
-.signup:hover{
+.signup:hover {
   opacity: 0.6;
 }

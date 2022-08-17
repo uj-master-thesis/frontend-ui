@@ -1,4 +1,9 @@
-frontend ui for microNews application 
+# frontend ui for microNews application 
+
+# How to run project?
+
+Run `npm install`. This command installs a package and any packages that it depends on.
+Then run `ng serve`
 
 # FrontendUi
 

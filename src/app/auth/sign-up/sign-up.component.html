@@ -1,4 +1,3 @@
-wegsewsgsrh
 <div class="register-section">
   <div class="row justify-content-center">
     <div class="col-md-3"></div>
@@ -8,11 +7,12 @@ wegsewsgsrh
           <h4>Register</h4>
         </div>
         <div class="card-body">
-          <form [formGroup]="signupForm" (ngSubmit)="signup()" >
+          <form [formGroup]="signupForm" (ngSubmit)="signup()">
             <div class="form-group row">
               <label class="col-md-4 col-form-label text-md-right" for="email_address">E-Mail Address</label>
               <div class="col-md-6">
-                 <input [formControlName]="'email'" autofocus class="form-control" id="email_address" name="email-address" required type="text">
+                <input [formControlName]="'email'" autofocus class="form-control" id="email_address"
+                       name="email-address" required type="text">
                 <span *ngIf="signupForm?.get('email')?.valid && signupForm?.get('email')?.touched" class="help-block">Please enter a valid email</span>
               </div>
             </div>
