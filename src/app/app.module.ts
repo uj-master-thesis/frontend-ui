@@ -17,6 +17,10 @@ import {VoteButtonComponent} from './shared/vote-button/vote-button.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subreddit.component';
+import {CreatePostComponent} from './post/create-post/create-post.component';
+import {ListSubredditsComponent} from './subreddit/list-subreddits/list-subreddits.component';
+import {EditorModule} from "@tinymce/tinymce-angular";
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     PostTileComponent,
     SideBarComponent,
     MicronewsSideBarComponent,
-    VoteButtonComponent
+    VoteButtonComponent,
+    CreateSubredditComponent,
+    CreatePostComponent,
+    ListSubredditsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    EditorModule
   ],
   providers: [
     {

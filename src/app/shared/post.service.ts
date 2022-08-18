@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { PostModel } from './post-model';
 import {Observable, of} from 'rxjs';
 import {POST_MODELS} from "../mocked/mock-post-model";
+import {CreatePostPayload} from "../post/create-post/create-post-payload";
 // import { CreatePostPayload } from '../post/create-post/create-post.payload';
 
 @Injectable({
@@ -25,6 +26,10 @@ export class PostService {
   // createPost(postPayload: CreatePostPayload): Observable<any> {
   //   return this.http.post('http://localhost:8080/api/posts/', postPayload);
   // }
+
+  createPost(postPayload: CreatePostPayload): Observable<any> {
+    return of(postPayload);
+  }
 
   getPost(id: number): Observable<PostModel> {
     return this.http.get<PostModel>('http://localhost:8080/api/posts/' + id);
