@@ -1,11 +1,12 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {SignupRequestPayload} from '../sign-up/signup-request.payload';
-import {map, Observable, of, tap, throwError} from 'rxjs';
+import {Observable, of, tap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LoginRequestPayload} from "../login/login-request.payload";
 import {LoginResponsePayload} from "../login/login-response.payload";
 import {LocalStorageService} from "ngx-webstorage";
 
+//TODO: add real http requests when service will be ready
 @Injectable({
   providedIn: 'root'
 })
@@ -27,8 +28,9 @@ export class AuthService {
   // }
 
   signup(signupRequestPayload: SignupRequestPayload | undefined): Observable<any> {
-    return of({ status: 200, data: {} });
+    return of({status: 200, data: {}});
   }
+
   // login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
   //   return this.httpClient.post<LoginResponsePayload>('http://localhost:8080/api/auth/login', loginRequestPayload)
   //     .pipe(map(data => {
@@ -66,8 +68,8 @@ export class AuthService {
     //   }));
     const date = new Date();
     date.setMinutes(date.getMinutes() + 7)
-    const loginResponsePayload :LoginResponsePayload = {
-      authenticationToken: '12'+date.toDateString(),
+    const loginResponsePayload: LoginResponsePayload = {
+      authenticationToken: '12' + date.toDateString(),
       refreshToken: '2133',
       expiresAt: date,
       username: 'pator'

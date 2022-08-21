@@ -1,5 +1,6 @@
 <header>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <div >
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
     <div class="flex-grow-1">
       <a aria-label="Home" class="logo" routerLink="/">
         <img src="/assets/img/bird.png" alt="image" id="bird">
@@ -8,25 +9,22 @@
         </span>
       </a>
     </div>
-    <div class="flex-grow-1 float-right">
-      <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
+    <div class="flex-grow-1">
+      <div *ngIf="isLoggedIn" ngbDropdown>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>
           <button (click)="logout()" ngbDropdownItem>Logout</button>
         </div>
-        <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
-          <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png">
+        <button class="userDetails" id="dropdownBasic1" ngbDropdownToggle>
+          <img class="account-icon" src="/assets/img/userImg.png" alt="user image">
           {{username}}
         </button>
       </div>
       <div *ngIf="!isLoggedIn">
-        <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
+        <a routerLink="/sign-up" class="float-left sign-up mr-2 ">Sign up</a>
         <a routerLink="/login" class="float-right login mr-2">Login</a>
       </div>
     </div>
-<!--    <div class="flex-grow-1">-->
-<!--      <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>-->
-<!--      <a routerLink="/login" class="float-right login mr-2">Login</a>-->
-<!--    </div>-->
   </nav>
+  </div>
 </header>
