@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import {SignupRequestPayload} from '../sign-up/signup-request.payload';
-import {map, Observable, of, tap} from 'rxjs';
+import {map, Observable, of, tap, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LoginRequestPayload} from "../login/login-request.payload";
 import {LoginResponsePayload} from "../login/login-response.payload";
@@ -10,6 +10,14 @@ import {LocalStorageService} from "ngx-webstorage";
   providedIn: 'root'
 })
 export class AuthService {
+
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() username: EventEmitter<string> = new EventEmitter();
+
+  refreshTokenPayload = {
+    refreshToken: this.getRefreshToken(),
+    username: this.getUserName()
+  }
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) {
   }
@@ -35,11 +43,13 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     const time = new Date();
     time.setMinutes(time.getMinutes() + 5)
-    console.log(":efewwe")
+    console.log("trying login")
     this.localStorage.store('authenticationToken', 'someRandomAuthenticationTokenValue1323');
     this.localStorage.store('username', loginRequestPayload.username);
     this.localStorage.store('refreshToken', 'someRandomRefreshTokenValue1323');
     this.localStorage.store('expiresAt', time);
+    this.loggedIn.emit(true);
+    this.username.emit(loginRequestPayload.username);
     return of(true);
   }
 
@@ -64,9 +74,25 @@ export class AuthService {
     };
     return of(loginResponsePayload)
       .pipe(tap(response => {
+        this.localStorage.clear('authenticationToken');
+        this.localStorage.clear('expiresAt');
         this.localStorage.store('authenticationToken', response.authenticationToken);
         this.localStorage.store('expiresAt', response.expiresAt);
       }));
+  }
+
+  logout() {
+    // this.httpClient.post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload,
+    //   { responseType: 'text' })
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   }, error => {
+    //     throwError(error);
+    //   })
+    this.localStorage.clear('authenticationToken');
+    this.localStorage.clear('username');
+    this.localStorage.clear('refreshToken');
+    this.localStorage.clear('expiresAt');
   }
 
   getJwtToken() {
@@ -81,7 +107,7 @@ export class AuthService {
     return this.localStorage.retrieve('username');
   }
 
-  getExpirationTime() {
-    return this.localStorage.retrieve('expiresAt');
+  isLoggedIn(): boolean {
+    return this.getJwtToken() != null;
   }
 }

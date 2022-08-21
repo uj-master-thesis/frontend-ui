@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from "./auth/auth.module";
+// import {AuthModule} from "./auth/auth.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {ToastrModule} from "ngx-toastr";
@@ -21,6 +21,12 @@ import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subr
 import {CreatePostComponent} from './post/create-post/create-post.component';
 import {ListSubredditsComponent} from './subreddit/list-subreddits/list-subreddits.component';
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { ViewPostComponent } from './post/view-post/view-post.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from "./auth/login/login.component";
+import {SignUpComponent} from "./auth/sign-up/sign-up.component";
+import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
+// import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -28,24 +34,29 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     HeaderComponent,
     HomeComponent,
     PostTileComponent,
+    LoginComponent,
+    SignUpComponent,
+    UserProfileComponent,
     SideBarComponent,
     MicronewsSideBarComponent,
     VoteButtonComponent,
     CreateSubredditComponent,
     CreatePostComponent,
-    ListSubredditsComponent
+    ListSubredditsComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthModule,
+    // AuthModule,
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot(),
     FontAwesomeModule,
     BrowserAnimationsModule,
-    EditorModule
+    EditorModule,
+    NgbModule
   ],
   providers: [
     {
@@ -53,6 +64,9 @@ import {EditorModule} from "@tinymce/tinymce-angular";
       useClass: TokenInterceptor,
       multi: true
     }
+  ],
+  exports: [
+    PostTileComponent
   ],
   bootstrap: [AppComponent]
 })
