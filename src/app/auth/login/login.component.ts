@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   loginRequestPayload: LoginRequestPayload;
-  registerSuccessMessage?: string;
   isError!: boolean;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
@@ -32,11 +31,9 @@ export class LoginComponent implements OnInit {
     })
 
     this.activatedRoute.queryParams
-      .subscribe(params=> {
-        if(params['registered'] !== undefined && params['registered'] === 'true'){
+      .subscribe(params => {
+        if (params['registered'] !== undefined && params['registered'] === 'true') {
           this.toastr.success('Signup Successful');
-          this.registerSuccessMessage = 'Please Check your inbox for activation email '
-            + 'activate your account before you Login!';
         }
       })
   }

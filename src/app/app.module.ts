@@ -23,6 +23,11 @@ import {EditorModule} from "@tinymce/tinymce-angular";
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import {ViewPostComponent} from './post/view-post/view-post.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from "./auth/login/login.component";
+import {SignUpComponent} from "./auth/sign-up/sign-up.component";
+import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -30,30 +35,27 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     HeaderComponent,
     HomeComponent,
     PostTileComponent,
+    LoginComponent,
+    SignUpComponent,
+    UserProfileComponent,
     SideBarComponent,
     MicronewsSideBarComponent,
     VoteButtonComponent,
     CreateSubredditComponent,
     CreatePostComponent,
-    ListSubredditsComponent
+    ListSubredditsComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthModule,
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot(),
     FontAwesomeModule,
     BrowserAnimationsModule,
-    EditorModule,
-    AuthModule.forRoot({
-      ...env.auth,
-      httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}Token`],
-      }
-    }),
+    EditorModule
   ],
   providers: [
     // {
@@ -66,6 +68,9 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
       useClass: AuthHttpInterceptor,
       multi: true,
     }
+  ],
+  exports: [
+    PostTileComponent
   ],
   bootstrap: [AppComponent]
 })

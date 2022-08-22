@@ -1,7 +1,7 @@
 header {
   border-radius: 1px;
+  margin-bottom: 100px;
 }
-
 
 #bird {
   height: 50px;
@@ -11,6 +11,7 @@ header {
 }
 
 .microNews-text {
+  color: white;
   font-weight: 700;
   height: 50px;
   width: 50px;
@@ -22,7 +23,7 @@ header {
 
 .login, .sign-up {
   background-color: transparent;
-  color: #0079D3;
+  color: aliceblue;
   fill: #0079D3;
   border: 1px solid #0079D3;
   border-radius: 4px;
@@ -41,9 +42,55 @@ header {
 .sign-up {
   background-color: #0079D3;
   border-color: #0079D3;
-  color: aliceblue;
 }
 
 .signup:hover {
   opacity: 0.6;
+}
+
+.userDetails {
+  background-color: transparent;
+  color: aliceblue;
+  fill: #0079D3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  opacity: 1;
+  border: 0 #0079D3;
+}
+
+.userDetails:hover {
+  border: 1px solid;
+}
+
+.dropdown-item {
+  background-color: #f8f9fa;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown-item:hover {
+  background-color: #0079D3;
+}
+
+.dropdown-menu {
+  background-color: #f8f9fa;
+}
+
+.account-icon {
+  border-radius: 4px;
+  float: left;
+  margin-right: 5px;
+  max-height: 24px;
+  max-width: 24px;
 }

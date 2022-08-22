@@ -41,8 +41,8 @@ export class SignUpComponent implements OnInit {
         console.log('Signup Successful');
         this.router.navigate(['/login'], {queryParams: {registered: 'true'}});
       }, () => {
-        this.toastr.error('Registration Failed! Please try again');
         console.log('Signup Failed');
+        this.toastr.error('Registration Failed! Please try again');
       });
   }
 
