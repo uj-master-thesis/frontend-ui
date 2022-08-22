@@ -8,9 +8,15 @@
         </span>
       </a>
     </div>
-    <div class="flex-grow-1">
-      <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
-      <a routerLink="/login" class="float-right login mr-2">Login</a>
+    <div class="flex-grow-1" *ngIf="(auth.isAuthenticated$ | async) === false">
+      <button (click)="loginWithRedirect()" class="float-right sign-up mr-2" style="margin-right: 5px">Sign up</button>
+      <button (click)="signUpWithRedirect()" class="float-right login mr-2" style="margin-right: 5px">Login</button>
+    </div>
+    <div class="flex-grow-1" *ngIf="auth.user$ | async as user">
+      <button (click)="logout()" class="float-right sign-up mr-2" style="margin-right: 5px">Logout</button>
+      <button (click)="callApi()" class="float-right sign-up mr-2" style="margin-right: 5px">Set login</button>
+
+      <a class="float-right text-muted mr-2">User: {{ user.name }}</a>
     </div>
   </nav>
 </header>

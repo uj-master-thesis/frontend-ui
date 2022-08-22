@@ -4,11 +4,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from "./auth/auth.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {ToastrModule} from "ngx-toastr";
-import {TokenInterceptor} from "./token-interceptor";
+// import {TokenInterceptor} from "./token-interceptor";
 import {HomeComponent} from './home/home.component';
 import {PostTileComponent} from './shared/post-tile/post-tile.component';
 import {SideBarComponent} from './shared/side-bar/side-bar.component';
@@ -21,6 +20,9 @@ import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subr
 import {CreatePostComponent} from './post/create-post/create-post.component';
 import {ListSubredditsComponent} from './subreddit/list-subreddits/list-subreddits.component';
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -45,13 +47,24 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     ToastrModule.forRoot(),
     FontAwesomeModule,
     BrowserAnimationsModule,
-    EditorModule
+    EditorModule,
+    AuthModule.forRoot({
+      ...env.auth,
+      httpInterceptor: {
+        allowedList: [`${env.dev.serverUrl}Token`],
+      }
+    }),
   ],
   providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInterceptor,
+    //   multi: true
+    // }
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
+      useClass: AuthHttpInterceptor,
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]
