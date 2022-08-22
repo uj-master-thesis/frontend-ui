@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth/shared/auth.service';
+import {Component, OnInit, Inject} from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import {Router} from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment as env } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +13,17 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
   username!: string;
+  profileJson: string = "";
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, 
+             private router: Router,       
+            @Inject(DOCUMENT) private doc: Document,
+            private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
-    this.authService.username.subscribe((data: string) => this.username = data);
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.username = this.authService.getUserName();
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
+    );
   }
 
   goToUserProfile() {
@@ -25,8 +31,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.isLoggedIn = false;
-    this.router.navigateByUrl('');
+    this.auth.logout({ returnTo: this.doc.location.origin });
+  }
+
+  callApi(){
+    this.httpClient
+    .get(`${env.dev.serverUrl}/api/authorize`)
+    .subscribe(() => {
+    });
   }
 }
