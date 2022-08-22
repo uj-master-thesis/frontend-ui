@@ -1,13 +1,11 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {ToastrModule} from "ngx-toastr";
-import {TokenInterceptor} from "./token-interceptor";
 import {HomeComponent} from './home/home.component';
 import {PostTileComponent} from './shared/post-tile/post-tile.component';
 import {SideBarComponent} from './shared/side-bar/side-bar.component';
@@ -25,6 +23,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from "./auth/login/login.component";
 import {SignUpComponent} from "./auth/sign-up/sign-up.component";
 import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -53,14 +54,20 @@ import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
     FontAwesomeModule,
     BrowserAnimationsModule,
     EditorModule,
-    NgbModule
+    NgbModule,
+    AuthModule.forRoot({
+      ...env.auth,
+      httpInterceptor: {
+        allowedList: [`${env.dev.serverUrl}/api/authorize`],
+      },
+    }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
   ],
   exports: [
     PostTileComponent

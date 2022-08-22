@@ -1,6 +1,6 @@
 <div class="container">
-  <div>
-    Welcome <b>{{name}}</b>.<br/> You have posted <b>{{postsCount}}</b> time(s) and commented
+  <div *ngIf="auth.user$ | async as user">
+    Welcome <b>{{ user.name }}</b>.<br/> You have posted <b>{{postsCount}}</b> time(s) and commented
     <b>{{commentsCount}}</b> time(s).
     You can check your post and comment history below.
   </div>

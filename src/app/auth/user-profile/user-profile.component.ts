@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {CommentService} from 'src/app/comment/comment.service';
 import {PostModel} from 'src/app/shared/post-model';
 import {CommentPayload} from 'src/app/comment/comment-payload';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,9 +17,10 @@ export class UserProfileComponent implements OnInit {
   comments!: CommentPayload[];
   postsCount!: number;
   commentsCount!: number;
+  profileJson: string = "";
 
   constructor(private activatedRoute: ActivatedRoute, private postService: PostService,
-              private commentService: CommentService) {
+              private commentService: CommentService, public auth: AuthService) {
 
     this.name = this.activatedRoute.snapshot.params['name'];
 
@@ -34,6 +36,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
+    );
   }
 
 }
