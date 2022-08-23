@@ -4,6 +4,7 @@ import {VotePayload} from "./vote-button/vote-payload";
 import {Observable, of} from "rxjs";
 import {VOTE_MODELS} from "../mocked/mock-vote";
 
+//TODO: add real http requests when service will be ready
 @Injectable({
   providedIn: 'root'
 })

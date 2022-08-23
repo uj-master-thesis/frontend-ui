@@ -1,4 +1,3 @@
-import {PostModel} from "../shared/post-model";
 import {CommentPayload} from "../comment/comment-payload";
 
 export const COMMENTS_MODEL: CommentPayload[] = [

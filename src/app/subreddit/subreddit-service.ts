@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import { SubredditModel } from './subreddit-model';
 import {SUBREDDIT_MODELS} from "../mocked/mock-subreddit-model";
 
+//TODO: add real http requests when service will be ready
 @Injectable({
   providedIn: 'root'
 })
