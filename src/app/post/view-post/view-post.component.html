@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <hr />
+    <hr/>
     <div class="col-md-9">
       <div class="row post">
         <div class="col-md-1">
@@ -16,7 +16,7 @@
               <a *ngIf="post.userName != null" class="username" href="">{{post.userName}}</a>
             </span>
           </span>
-          <hr />
+          <hr/>
           <a routerLink="post.url" class="post-title">{{post.postName}}</a>
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
@@ -39,7 +39,7 @@
               </div>
               <b>{{comment.text}}</b>
             </div>
-            <hr />
+            <hr/>
           </div>
         </div>
       </div>

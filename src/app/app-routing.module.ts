@@ -8,7 +8,7 @@ import {CreateSubredditComponent} from "./subreddit/create-subreddit/create-subr
 import {ListSubredditsComponent} from "./subreddit/list-subreddits/list-subreddits.component";
 import {ViewPostComponent} from "./post/view-post/view-post.component";
 import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
-import { AuthGuard } from '@auth0/auth0-angular';
+import {AuthGuard} from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},

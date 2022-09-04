@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SubredditModel } from '../subreddit-model';
-import { Router } from '@angular/router';
-import { SubredditService } from '../subreddit-service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SubredditModel} from '../subreddit-model';
+import {Router} from '@angular/router';
+import {SubredditService} from '../subreddit-service';
 
 @Component({
   selector: 'app-create-subreddit',

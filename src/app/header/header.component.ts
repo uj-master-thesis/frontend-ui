@@ -1,9 +1,9 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import {Component, Inject, OnInit} from '@angular/core';
+import {AuthService} from '@auth0/auth0-angular';
 import {Router} from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { environment as env } from '../../environments/environment';
+import {DOCUMENT} from '@angular/common';
+import {HttpClient} from '@angular/common/http';
+import {environment as env} from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +15,11 @@ export class HeaderComponent implements OnInit {
   username!: string;
   profileJson: string = "";
 
-  constructor(public auth: AuthService, 
-             private router: Router,       
-            @Inject(DOCUMENT) private doc: Document,
-            private httpClient: HttpClient) { }
+  constructor(public auth: AuthService,
+              private router: Router,
+              @Inject(DOCUMENT) private doc: Document,
+              private httpClient: HttpClient) {
+  }
 
   ngOnInit() {
     this.auth.user$.subscribe(
@@ -31,13 +32,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout({ returnTo: this.doc.location.origin });
+    this.auth.logout({returnTo: this.doc.location.origin});
   }
 
-  callApi(){
+  callApi() {
     this.httpClient
-    .get(`${env.dev.serverUrl}/api/authorize`)
-    .subscribe(() => {
-    });
+      .get(`${env.dev.serverUrl}/api/authorize`)
+      .subscribe(() => {
+      });
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import {AuthService} from '@auth0/auth0-angular';
 
 
 @Component({
@@ -7,16 +7,18 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  implements OnInit {
-  constructor(public auth: AuthService) {}
+export class LoginComponent implements OnInit {
+  constructor(public auth: AuthService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   loginWithRedirect(): void {
     this.auth.loginWithRedirect();
   }
 
   signUpWithRedirect(): void {
-    this.auth.loginWithRedirect({ screen_hint: 'signup' });
+    this.auth.loginWithRedirect({screen_hint: 'signup'});
   }
 }

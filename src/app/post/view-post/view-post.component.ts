@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/shared/post.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PostModel } from 'src/app/shared/post-model';
-import { throwError } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CommentPayload } from 'src/app/comment/comment-payload';
-import { CommentService } from 'src/app/comment/comment.service';
+import {Component, OnInit} from '@angular/core';
+import {PostService} from 'src/app/shared/post.service';
+import {ActivatedRoute} from '@angular/router';
+import {PostModel} from 'src/app/shared/post-model';
+import {throwError} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CommentPayload} from 'src/app/comment/comment-payload';
+import {CommentService} from 'src/app/comment/comment.service';
 
 @Component({
   selector: 'app-view-post',

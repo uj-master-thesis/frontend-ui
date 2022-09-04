@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SubredditModel} from "../../subreddit/subreddit-model";
 import {SubredditService} from "../../subreddit/subreddit-service";
 

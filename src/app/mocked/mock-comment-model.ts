@@ -1,8 +1,8 @@
 import {CommentPayload} from "../comment/comment-payload";
 
 export const COMMENTS_MODEL: CommentPayload[] = [
-  { text: 'efa', postId: 123, username: 'Patryk', duration: '21'},
-  { text: 'efdsfa', postId: 1223, username: 'Patryk', duration: '213'},
+  {text: 'efa', postId: 123, username: 'Patryk', duration: '21'},
+  {text: 'efdsfa', postId: 1223, username: 'Patryk', duration: '213'},
 ];
 
 

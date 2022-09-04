@@ -6,7 +6,8 @@
         <div class="form-group">
           <div class="create-post-heading">Create Post</div>
           <hr/>
-          <input [formControlName]="'postName'" class="form-control" placeholder="Title" style="margin-top: 5px" type="text">
+          <input [formControlName]="'postName'" class="form-control" placeholder="Title" style="margin-top: 5px"
+                 type="text">
           <span *ngIf="createPostForm?.get('postName')?.invalid" style="color: red">
                 post name is invalid
           </span>
@@ -30,7 +31,7 @@
               <button (click)="discardPost()" class="btnDiscard">Discard</button>
               <button (click)="createPost()" class="btnCreatePost"
                       [disabled]="createPostForm.controls['postName'].invalid || createPostForm.controls['subredditName'].invalid
-                                  || createPostForm.controls['description'].invalid" >
+                                  || createPostForm.controls['description'].invalid">
                 Post</button>
             </div>
           </span>

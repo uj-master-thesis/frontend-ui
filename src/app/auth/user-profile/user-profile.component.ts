@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {CommentService} from 'src/app/comment/comment.service';
 import {PostModel} from 'src/app/shared/post-model';
 import {CommentPayload} from 'src/app/comment/comment-payload';
-import { AuthService } from '@auth0/auth0-angular';
+import {AuthService} from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-user-profile',

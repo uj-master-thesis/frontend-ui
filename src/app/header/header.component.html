@@ -10,13 +10,13 @@
     </div>
     <div class="flex-grow-1">
       <div *ngIf="auth.user$ | async as user" ngbDropdown>
-        <div  ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>
           <button (click)="logout()" ngbDropdownItem>Logout</button>
           <button (click)="callApi()" ngbDropdownItem>Send Get Request</button>
 
         </div>
-        <button  class="userDetails" id="dropdownBasic1" ngbDropdownToggle>
+        <button class="userDetails" id="dropdownBasic1" ngbDropdownToggle>
           <img class="account-icon" src="{{user.picture}}" alt="user image">
           {{user.name}}
         </button>
