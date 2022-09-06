@@ -14,17 +14,16 @@ import {VoteButtonComponent} from './shared/vote-button/vote-button.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
-import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subreddit.component';
+import {CreateThreadComponent} from './thread/create-thread/create-thread.component';
 import {CreatePostComponent} from './post/create-post/create-post.component';
-import {ListSubredditsComponent} from './subreddit/list-subreddits/list-subreddits.component';
+import {ListThreadsComponent} from './thread/list-subreddits/list-threads.component';
 import {EditorModule} from "@tinymce/tinymce-angular";
 import {ViewPostComponent} from './post/view-post/view-post.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from "./auth/login/login.component";
 import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
-import { AuthModule } from '@auth0/auth0-angular';
-import { environment as env } from '../environments/environment';
-import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
+import {environment as env} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,9 +36,9 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     SideBarComponent,
     MicronewsSideBarComponent,
     VoteButtonComponent,
-    CreateSubredditComponent,
+    CreateThreadComponent,
     CreatePostComponent,
-    ListSubredditsComponent,
+    ListThreadsComponent,
     ViewPostComponent
   ],
   imports: [

@@ -1,6 +1,6 @@
 export interface CommentPayload {
   text: string;
-  postId: number;
+  postName: string;
   username?: string;
   duration?: string;
 }

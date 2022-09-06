@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ThreadModel} from 'src/app/subreddit/thread-model';
+import {ThreadModel} from 'src/app/thread/thread-model';
 import {Router} from '@angular/router';
 import {PostService} from 'src/app/shared/post.service';
-import {SubredditService} from 'src/app/subreddit/subreddit-service';
+import {ThreadService} from 'src/app/thread/thread.service';
 import {CreatePostPayload} from './create-post-payload';
 import {throwError} from 'rxjs';
 
@@ -22,7 +22,7 @@ export class CreatePostComponent implements OnInit {
   isImageSaved: boolean;
 
   constructor(private router: Router, private postService: PostService,
-              private subredditService: SubredditService) {
+              private subredditService: ThreadService) {
     this.isImageSaved = false;
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),

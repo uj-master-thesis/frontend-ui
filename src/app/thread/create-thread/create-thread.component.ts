@@ -2,26 +2,25 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ThreadModel} from '../thread-model';
 import {Router} from '@angular/router';
-import {SubredditService} from '../subreddit-service';
+import {ThreadService} from '../thread.service';
 
 @Component({
-  selector: 'app-create-subreddit',
-  templateUrl: './create-subreddit.component.html',
-  styleUrls: ['./create-subreddit.component.css']
+  selector: 'app-create-thread',
+  templateUrl: './create-thread.component.html',
+  styleUrls: ['./create-thread.component.css']
 })
-export class CreateSubredditComponent implements OnInit {
+export class CreateThreadComponent implements OnInit {
   createSubredditForm: FormGroup;
-  subredditModel: ThreadModel;
+  threadModel: ThreadModel;
   title = new FormControl('');
   description = new FormControl('');
 
-  constructor(private router: Router, private subredditService: SubredditService) {
+  constructor(private router: Router, private subredditService: ThreadService) {
     this.createSubredditForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
     });
-    this.subredditModel = {
-      id: 0,
+    this.threadModel = {
       name: '',
       description: '',
       postCount: 0
@@ -36,9 +35,10 @@ export class CreateSubredditComponent implements OnInit {
   }
 
   createSubreddit() {
-    this.subredditModel.name = this.createSubredditForm?.get('title')?.value;
-    this.subredditModel.description = this.createSubredditForm?.get('description')?.value;
-    this.subredditService.createSubreddit(this.subredditModel).subscribe(data => {
+    this.threadModel.name = this.createSubredditForm?.get('title')?.value;
+    this.threadModel.description = this.createSubredditForm?.get('description')?.value;
+    console.log(this.threadModel)
+    this.subredditService.createSubreddit(this.threadModel).subscribe(data => {
       this.router.navigateByUrl('/list-subreddits');
     }, error => {
       console.log('Error occurred');

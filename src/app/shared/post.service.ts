@@ -26,8 +26,8 @@ export class PostService {
     return of(postPayload);
   }
 
-  getPost(id: number): Observable<PostModel> {
-    return of(POST_MODELS[id])
+  getPost(postName: string): Observable<PostModel> {
+    return of(POST_MODELS[1])
     // return this.http.get<PostModel>('http://localhost:8080/api/posts/' + id);
   }
 

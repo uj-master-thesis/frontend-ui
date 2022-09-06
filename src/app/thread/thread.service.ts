@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {ThreadModel} from './thread-model';
-import {SUBREDDIT_MODELS} from "../mocked/mock-subreddit-model";
+import {SUBREDDIT_MODELS} from "../mocked/mock-thread-model";
 
 //TODO: add real http requests when service will be ready
 @Injectable({
   providedIn: 'root'
 })
-export class SubredditService {
+export class ThreadService {
   constructor(private http: HttpClient) {
   }
 

@@ -23,8 +23,8 @@ export class PostTileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToPost(id: number): void {
-    console.log('id:' + id)
-    this.router.navigateByUrl('/view-post/' + id);
+  goToPost(name: string): void {
+    console.log('postName:' + name)
+    this.router.navigateByUrl('/view-post/' + name);
   }
 }

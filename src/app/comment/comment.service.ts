@@ -17,7 +17,7 @@ export class CommentService {
     return of(commentPayload);
   }
 
-  getAllCommentsForPost(postId: number) {
+  getAllCommentsForPost(postName: string) {
     return of(COMMENTS_MODEL)
   }
 

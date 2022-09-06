@@ -6,6 +6,7 @@ import {throwError} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CommentPayload} from 'src/app/comment/comment-payload';
 import {CommentService} from 'src/app/comment/comment.service';
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-view-post',
@@ -14,16 +15,16 @@ import {CommentService} from 'src/app/comment/comment.service';
 })
 export class ViewPostComponent implements OnInit {
 
-  postId: number;
+  postName: string;
   post!: PostModel;
   commentForm: FormGroup;
   commentPayload: CommentPayload;
   comments!: CommentPayload[];
 
   constructor(private postService: PostService, private activateRoute: ActivatedRoute,
-              private commentService: CommentService) {
-    this.postId = this.activateRoute.snapshot.params['id'];
-    this.postService.getPost(this.postId).subscribe(data => {
+              private commentService: CommentService, private auth: AuthService) {
+    this.postName = this.activateRoute.snapshot.params['postName'];
+    this.postService.getPost(this.postName).subscribe(data => {
         this.post = data;
       }, error => {
         throwError(error);
@@ -34,18 +35,27 @@ export class ViewPostComponent implements OnInit {
     });
     this.commentPayload = {
       text: '',
-      postId: this.postId
+      postName: this.postName
     };
   }
 
   ngOnInit(): void {
     this.getPostById();
     this.getCommentsForPost();
+    this.auth.user$.subscribe(
+      (profile) => {
+        // @ts-ignore
+        console.log(profile.name)
+        // @ts-ignore
+        this.commentPayload.username = profile.name
+      }
+    );
   }
 
   postComment() {
     this.commentPayload.text = this.commentForm.get('text')?.value;
-    console.log(this.commentPayload.text)
+    this.commentPayload.duration = Math.floor(Date.now() / 1000).toString();
+    console.log(this.commentPayload)
     this.commentService.postComment(this.commentPayload).subscribe(data => {
       this.commentForm.get('text')?.setValue('');
       console.log(data)
@@ -56,7 +66,7 @@ export class ViewPostComponent implements OnInit {
   }
 
   private getPostById() {
-    this.postService.getPost(this.postId).subscribe(data => {
+    this.postService.getPost(this.postName).subscribe(data => {
       this.post = data;
     }, error => {
       throwError(error);
@@ -64,7 +74,7 @@ export class ViewPostComponent implements OnInit {
   }
 
   private getCommentsForPost() {
-    this.commentService.getAllCommentsForPost(this.postId).subscribe(data => {
+    this.commentService.getAllCommentsForPost(this.postName).subscribe(data => {
       this.comments = data;
     }, error => {
       throwError(error);

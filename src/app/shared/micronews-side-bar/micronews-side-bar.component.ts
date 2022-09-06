@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ThreadModel} from "../../subreddit/thread-model";
-import {SubredditService} from "../../subreddit/subreddit-service";
+import {ThreadModel} from "../../thread/thread-model";
+import {ThreadService} from "../../thread/thread.service";
 
 @Component({
   selector: 'app-micronews-side-bar',
@@ -12,7 +12,7 @@ export class MicronewsSideBarComponent implements OnInit {
   subreddits: Array<ThreadModel> = [];
   displayViewAll?: boolean;
 
-  constructor(private subredditService: SubredditService) {
+  constructor(private subredditService: ThreadService) {
     this.subredditService.getAllSubreddits().subscribe(data => {
       if (data.length > 3) {
         this.subreddits = data.splice(0, 3);
