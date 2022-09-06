@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SubredditModel} from '../subreddit-model';
+import {ThreadModel} from '../thread-model';
 import {Router} from '@angular/router';
 import {SubredditService} from '../subreddit-service';
 
@@ -11,7 +11,7 @@ import {SubredditService} from '../subreddit-service';
 })
 export class CreateSubredditComponent implements OnInit {
   createSubredditForm: FormGroup;
-  subredditModel: SubredditModel;
+  subredditModel: ThreadModel;
   title = new FormControl('');
   description = new FormControl('');
 

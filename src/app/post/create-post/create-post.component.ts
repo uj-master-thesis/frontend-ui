@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SubredditModel} from 'src/app/subreddit/subreddit-model';
+import {ThreadModel} from 'src/app/subreddit/thread-model';
 import {Router} from '@angular/router';
 import {PostService} from 'src/app/shared/post.service';
 import {SubredditService} from 'src/app/subreddit/subreddit-service';
@@ -16,7 +16,7 @@ export class CreatePostComponent implements OnInit {
 
   createPostForm: FormGroup;
   postPayload: CreatePostPayload;
-  subreddits?: Array<SubredditModel>;
+  threads?: Array<ThreadModel>;
   file: File | undefined; // Variable to store file
   cardImageBase64?: string;
   isImageSaved: boolean;
@@ -26,7 +26,7 @@ export class CreatePostComponent implements OnInit {
     this.isImageSaved = false;
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
-      subredditName: new FormControl('', Validators.required),
+      threadName: new FormControl('', Validators.required),
       url: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
@@ -34,13 +34,13 @@ export class CreatePostComponent implements OnInit {
       postName: '',
       url: '',
       description: '',
-      subredditName: ''
+      threadName: ''
     }
   }
 
   ngOnInit() {
     this.subredditService.getAllSubreddits().subscribe((data) => {
-      this.subreddits = data;
+      this.threads = data;
     }, error => {
       throwError(error);
     });
@@ -48,7 +48,7 @@ export class CreatePostComponent implements OnInit {
 
   createPost() {
     this.postPayload.postName = this.createPostForm?.get('postName')?.value;
-    this.postPayload.subredditName = this.createPostForm?.get('subredditName')?.value;
+    this.postPayload.threadName = this.createPostForm?.get('threadName')?.value;
     this.postPayload.url = this.createPostForm?.get('url')?.value;
     this.postPayload.description = this.createPostForm?.get('description')?.value;
     this.postPayload.fileCompressed = this.cardImageBase64;
@@ -101,6 +101,7 @@ export class CreatePostComponent implements OnInit {
             const imgBase64Path = e.target.result;
             this.cardImageBase64 = imgBase64Path;
             console.log(imgBase64Path)
+            console.log(this.cardImageBase64)
             this.isImageSaved = true;
           }
         };

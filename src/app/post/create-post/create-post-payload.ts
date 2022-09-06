@@ -1,6 +1,6 @@
 export interface CreatePostPayload {
   postName: string;
-  subredditName?: string;
+  threadName?: string;
   url?: string;
   description: string;
   fileCompressed?: string; //as base64

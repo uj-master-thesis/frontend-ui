@@ -21,7 +21,6 @@ import {EditorModule} from "@tinymce/tinymce-angular";
 import {ViewPostComponent} from './post/view-post/view-post.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from "./auth/login/login.component";
-import {SignUpComponent} from "./auth/sign-up/sign-up.component";
 import {UserProfileComponent} from "./auth/user-profile/user-profile.component";
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
@@ -34,7 +33,6 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     HomeComponent,
     PostTileComponent,
     LoginComponent,
-    SignUpComponent,
     UserProfileComponent,
     SideBarComponent,
     MicronewsSideBarComponent,

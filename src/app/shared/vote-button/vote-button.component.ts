@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PostModel} from '../post-model';
 import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
 import {VoteService} from "../vote.service";
-import {AuthService} from "../../auth/shared/auth.service";
+import {AuthService} from '@auth0/auth0-angular';
 import {PostService} from "../post.service";
 import {ToastrService} from "ngx-toastr";
 import {VotePayload} from "./vote-payload";
@@ -22,36 +22,55 @@ export class VoteButtonComponent implements OnInit {
   faArrowDown = faArrowDown;
   upvoteColor?: string;
   downvoteColor?: string;
+  logged = false;
 
   constructor(private voteService: VoteService,
-              private authService: AuthService,
+              public auth: AuthService,
               private postService: PostService,
               private toastr: ToastrService) {
     this.votePayload = {
       voteType: undefined,
-      postId: undefined
+      postId: undefined,
     }
   }
 
   ngOnInit(): void {
+    this.auth.user$.subscribe(
+      (profile) => {
+        // @ts-ignore
+        console.log(profile.name)
+        // @ts-ignore
+        this.votePayload.username = profile.name
+        this.logged = true
+      }
+    );
     this.updateVoteDetails();
   }
 
   upvotePost() {
-    this.votePayload.voteType = VoteType.UPVOTE;
-    this.vote();
-    this.downvoteColor = '';
+    if (this.logged) {
+      this.votePayload.voteType = VoteType.UPVOTE;
+      this.vote();
+      this.downvoteColor = '';
+    } else {
+      this.toastr.info("Please log in first!")
+    }
   }
 
   downvotePost() {
-    this.votePayload.voteType = VoteType.DOWNVOTE;
-    this.vote();
-    this.upvoteColor = '';
+    if (this.logged) {
+      this.votePayload.voteType = VoteType.DOWNVOTE;
+      this.vote();
+      this.upvoteColor = '';
+    } else {
+      this.toastr.info("Please log in first!")
+    }
   }
 
   private vote() {
     this.votePayload.postId = this.post.id;
     this.voteService.vote(this.votePayload).subscribe(() => {
+      //probably unnecessary
       this.updateVoteDetails();
     }, error => {
       this.toastr.error(error.error.message);

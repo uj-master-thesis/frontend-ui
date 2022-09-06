@@ -14,6 +14,7 @@ export class VoteService {
   }
 
   vote(votePayload: VotePayload): Observable<any> {
+    console.log("votePayload: ", votePayload)
     // return this.http.post('http://localhost:8080/api/votes/', votePayload);
     return of(VOTE_MODELS);
   }

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {SignUpComponent} from "./auth/sign-up/sign-up.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {CreatePostComponent} from "./post/create-post/create-post.component";
@@ -17,7 +16,8 @@ const routes: Routes = [
   {path: 'list-subreddits', component: ListSubredditsComponent},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},
   {path: 'create-subreddit', component: CreateSubredditComponent, canActivate: [AuthGuard]},
-  {path: 'sign-up', component: SignUpComponent},
+  //auth0-angular replaced old way below
+  // {path: 'sign-up', component: SignUpComponent},
   {path: 'login', component: LoginComponent}
 ];
 

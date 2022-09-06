@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SubredditModel} from '../subreddit-model';
+import {ThreadModel} from '../thread-model';
 import {SubredditService} from '../subreddit-service';
 import {throwError} from 'rxjs';
 
@@ -10,7 +10,7 @@ import {throwError} from 'rxjs';
 })
 export class ListSubredditsComponent implements OnInit {
 
-  subreddits?: Array<SubredditModel>;
+  subreddits?: Array<ThreadModel>;
 
   constructor(private subredditService: SubredditService) {
   }

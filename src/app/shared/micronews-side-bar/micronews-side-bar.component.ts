@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SubredditModel} from "../../subreddit/subreddit-model";
+import {ThreadModel} from "../../subreddit/thread-model";
 import {SubredditService} from "../../subreddit/subreddit-service";
 
 @Component({
@@ -9,7 +9,7 @@ import {SubredditService} from "../../subreddit/subreddit-service";
 })
 export class MicronewsSideBarComponent implements OnInit {
 
-  subreddits: Array<SubredditModel> = [];
+  subreddits: Array<ThreadModel> = [];
   displayViewAll?: boolean;
 
   constructor(private subredditService: SubredditService) {

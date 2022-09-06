@@ -11,7 +11,6 @@ import {environment as env} from '../../environments/environment';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn!: boolean;
   username!: string;
   profileJson: string = "";
 

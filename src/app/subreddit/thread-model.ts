@@ -1,4 +1,4 @@
-export interface SubredditModel {
+export interface ThreadModel {
   id: number;
   name: string;
   description: string;

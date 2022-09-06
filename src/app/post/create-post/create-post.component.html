@@ -15,11 +15,11 @@
           <input [formControlName]="'file'" class="form-control" id="file" accept="image/*"
                  type="file" (change)="onChange($event)" style="margin-top: 5px">
           <div *ngIf="!isImageSaved">Image not selected</div>
-          <select [formControlName]="'subredditName'" class="form-control" style="margin-top: 10px">
+          <select [formControlName]="'threadName'" class="form-control" style="margin-top: 10px">
             <option disabled selected value="">Select Thread</option>
-            <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
+            <option *ngFor="let thread of threads">{{thread.name}}</option>
           </select>
-          <span *ngIf="createPostForm?.get('subredditName')?.invalid" style="color: red">
+          <span *ngIf="createPostForm?.get('threadName')?.invalid" style="color: red">
                 thread name is not selected!
           </span>
           <editor [formControlName]="'description'"></editor>
@@ -30,7 +30,7 @@
             <div class="float-right" style="margin-top: 5px">
               <button (click)="discardPost()" class="btnDiscard">Discard</button>
               <button (click)="createPost()" class="btnCreatePost"
-                      [disabled]="createPostForm.controls['postName'].invalid || createPostForm.controls['subredditName'].invalid
+                      [disabled]="createPostForm.controls['postName'].invalid || createPostForm.controls['threadName'].invalid
                                   || createPostForm.controls['description'].invalid">
                 Post</button>
             </div>
