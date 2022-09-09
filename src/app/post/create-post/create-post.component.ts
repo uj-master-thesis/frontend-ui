@@ -6,6 +6,7 @@ import {PostService} from 'src/app/shared/post.service';
 import {ThreadService} from 'src/app/thread/thread.service';
 import {CreatePostPayload} from './create-post-payload';
 import {throwError} from 'rxjs';
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-create-post',
@@ -21,7 +22,9 @@ export class CreatePostComponent implements OnInit {
   cardImageBase64?: string;
   isImageSaved: boolean;
 
-  constructor(private router: Router, private postService: PostService,
+  constructor(private router: Router,
+              private postService: PostService,
+              public auth: AuthService,
               private subredditService: ThreadService) {
     this.isImageSaved = false;
     this.createPostForm = new FormGroup({
@@ -34,11 +37,20 @@ export class CreatePostComponent implements OnInit {
       postName: '',
       url: '',
       description: '',
-      threadName: ''
+      threadName: '',
+      username: ''
     }
   }
 
   ngOnInit() {
+    this.auth.user$.subscribe(
+      (profile) => {
+        // @ts-ignore
+        console.log(profile.name)
+        // @ts-ignore
+        this.postPayload.username = profile.name
+      }
+    );
     this.subredditService.getAllSubreddits().subscribe((data) => {
       this.threads = data;
     }, error => {

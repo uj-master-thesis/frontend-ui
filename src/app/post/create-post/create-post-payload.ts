@@ -4,4 +4,5 @@ export interface CreatePostPayload {
   url?: string;
   description: string;
   fileCompressed?: string; //as base64
+  username: string;
 }

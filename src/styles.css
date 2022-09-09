@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-html{
+html {
   padding: 0;
   height: 100%;
 }
-body{
+
+body {
   margin-top: 163px;
   height: 100%;
 }
