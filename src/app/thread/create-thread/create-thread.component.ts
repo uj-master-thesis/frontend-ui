@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ThreadModel} from '../thread-model';
 import {Router} from '@angular/router';
 import {ThreadService} from '../thread.service';
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-create-thread',
@@ -15,7 +16,9 @@ export class CreateThreadComponent implements OnInit {
   title = new FormControl('');
   description = new FormControl('');
 
-  constructor(private router: Router, private subredditService: ThreadService) {
+  constructor(private router: Router,
+              private subredditService: ThreadService,
+              private auth: AuthService) {
     this.createSubredditForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
@@ -23,11 +26,20 @@ export class CreateThreadComponent implements OnInit {
     this.threadModel = {
       name: '',
       description: '',
-      postCount: 0
+      postCount: 0,
+      username: ''
     }
   }
 
   ngOnInit() {
+    this.auth.user$.subscribe(
+      (profile) => {
+        // @ts-ignore
+        console.log(profile.name)
+        // @ts-ignore
+        this.threadModel.username = profile.name
+      }
+    );
   }
 
   discard() {

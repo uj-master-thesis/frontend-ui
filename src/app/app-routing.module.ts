@@ -15,9 +15,7 @@ const routes: Routes = [
   {path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'list-subreddits', component: ListThreadsComponent},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},
-  {path: 'create-thread', component: CreateThreadComponent, canActivate: [AuthGuard]},
-  //auth0-angular replaced old way below
-  // {path: 'sign-up', component: SignUpComponent},
+  {path: 'create-subreddit', component: CreateThreadComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent}
 ];
 

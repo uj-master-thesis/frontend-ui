@@ -5,4 +5,5 @@ export interface CreatePostPayload {
   description: string;
   userName: string;
   fileCompressed?: string; //as base64
+  username: string;
 }
