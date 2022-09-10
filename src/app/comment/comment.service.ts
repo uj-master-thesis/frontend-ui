@@ -18,7 +18,7 @@ export class CommentService {
   }
 
   getAllCommentsForPost(postName: string) {
-    return this.http.get<Array<CommentPayload>>('http://localhost:5000/api/comment/' + postName);
+    return this.http.get<Array<CommentPayload>>('http://localhost:5000/api/comment/by-post/' + postName);
   }
 
   getAllCommentsByUser(name: string) {
