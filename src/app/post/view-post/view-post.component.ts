@@ -47,14 +47,14 @@ export class ViewPostComponent implements OnInit {
         // @ts-ignore
         console.log(profile.name)
         // @ts-ignore
-        this.commentPayload.username = profile.name
+        this.commentPayload.username = profile?.email
       }
     );
   }
 
   postComment() {
     this.commentPayload.text = this.commentForm.get('text')?.value;
-    this.commentPayload.duration = Math.floor(Date.now() / 1000).toString();
+    this.commentPayload.timeStamp = Math.floor(Date.now() / 1000).toString();
     console.log(this.commentPayload)
     this.commentService.postComment(this.commentPayload).subscribe(data => {
       this.commentForm.get('text')?.setValue('');

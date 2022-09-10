@@ -10,4 +10,6 @@ export interface PostModel {
   duration: string;
   upVote: boolean;
   downVote: boolean;
+  upVotes: number;
+  downVotes: number;
 }
