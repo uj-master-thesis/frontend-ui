@@ -7,7 +7,6 @@ import {ThreadService} from 'src/app/thread/thread.service';
 import {CreatePostPayload} from './create-post-payload';
 import {throwError} from 'rxjs';
 import {AuthService} from '@auth0/auth0-angular';
-import {AuthService} from "@auth0/auth0-angular";
 
 
 @Component({
@@ -42,7 +41,7 @@ export class CreatePostComponent implements OnInit {
       url: '',
       description: '',
       threadName: '',
-      username: ''
+      userName: ''
     }
   }
 
