@@ -12,20 +12,20 @@ export class ThreadService {
   constructor(private http: HttpClient) {
   }
 
-  // getAllSubreddits(): Observable<Array<SubredditModel>> {
-  //   return this.http.get<Array<SubredditModel>>('http://localhost:8080/api/subreddit/');
-  // }
-
   getAllSubreddits(): Observable<Array<ThreadModel>> {
-    return of(SUBREDDIT_MODELS);
+    return this.http.get<Array<ThreadModel>>('http://localhost:5000/api/thread');
   }
 
-  // createSubreddit(subredditModel: SubredditModel): Observable<SubredditModel> {
-  //   return this.http.post<SubredditModel>('http://localhost:8080/api/subreddit',
-  //     subredditModel);
+  // getAllSubreddits(): Observable<Array<ThreadModel>> {
+  //   return of(SUBREDDIT_MODELS);
   // }
 
   createSubreddit(subredditModel: ThreadModel): Observable<ThreadModel> {
-    return of(subredditModel);
+    return this.http.post<ThreadModel>('http://localhost:5000/uploader/thread',
+      subredditModel);
   }
+
+  // createSubreddit(subredditModel: ThreadModel): Observable<ThreadModel> {
+  //   return of(subredditModel);
+  // }
 }

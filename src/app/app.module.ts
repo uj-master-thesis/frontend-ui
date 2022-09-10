@@ -55,7 +55,7 @@ import {environment as env} from '../environments/environment';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}/api/authorize`],
+        allowedList: [`http://localhost:5000/uploader/thread`, 'http://localhost:5000/uploader/post', 'http://localhost:5000/uploader/comment', 'http://localhost:5000/uploader/vote'],
       },
     }),
   ],

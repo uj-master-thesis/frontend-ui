@@ -5,7 +5,7 @@ export interface PostModel {
   description: string;
   voteCount: number;
   userName: string;
-  subredditName: string;
+  threadName: string;
   commentCount: number;
   duration: string;
   upVote: boolean;

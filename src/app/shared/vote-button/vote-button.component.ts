@@ -30,7 +30,7 @@ export class VoteButtonComponent implements OnInit {
               private toastr: ToastrService) {
     this.votePayload = {
       voteType: undefined,
-      postId: undefined,
+      postName: '',
     }
   }
 
@@ -40,7 +40,7 @@ export class VoteButtonComponent implements OnInit {
         // @ts-ignore
         console.log(profile.name)
         // @ts-ignore
-        this.votePayload.username = profile.name
+        this.votePayload.username = profile.email
         this.logged = true
       }
     );
@@ -68,7 +68,7 @@ export class VoteButtonComponent implements OnInit {
   }
 
   private vote() {
-    this.votePayload.postId = this.post.id;
+    this.votePayload.postName = this.post.postName;
     this.voteService.vote(this.votePayload).subscribe(() => {
       //probably unnecessary
       this.updateVoteDetails();

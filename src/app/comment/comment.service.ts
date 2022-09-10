@@ -10,18 +10,18 @@ import {of} from "rxjs";
 })
 export class CommentService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   postComment(commentPayload: CommentPayload) {
-    return of(commentPayload);
+    return this.http.post<CommentPayload>('http://localhost:5000/uploader/comment', commentPayload);
   }
 
   getAllCommentsForPost(postName: string) {
-    return of(COMMENTS_MODEL)
+    return this.http.get<Array<CommentPayload>>('http://localhost:5000/api/comment/' + postName);
   }
 
   getAllCommentsByUser(name: string) {
-    return of(COMMENTS_MODEL)
+    return this.http.get<Array<CommentPayload>>('http://localhost:5000/api/comment/by-user/' + name);
   }
 }

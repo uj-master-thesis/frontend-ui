@@ -3,5 +3,6 @@ export interface CreatePostPayload {
   threadName?: string;
   url?: string;
   description: string;
+  userName: string;
   fileCompressed?: string; //as base64
 }
