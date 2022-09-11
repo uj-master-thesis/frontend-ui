@@ -65,6 +65,14 @@ export class ViewPostComponent implements OnInit {
     })
   }
 
+  ClickImage(){
+    var image = new Image();
+    image.src = this.post.fileCompressed;
+
+    var w = window.open("");
+    w!.document.write(image.outerHTML);
+  }
+
   private getPostById() {
     this.postService.getPost(this.postName).subscribe(data => {
       this.post = data;

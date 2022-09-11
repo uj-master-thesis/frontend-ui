@@ -18,6 +18,9 @@
           </span>
           <hr/>
           <a routerLink="post.url" class="post-title">{{post.postName}}</a>
+          <div *ngIf="post.fileCompressed != ''" style="margin-top:20px;">
+            <img class="images"  src="{{post.fileCompressed}}" width="250" height="150" (click)="ClickImage()"/>
+          </div>
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
           </div>

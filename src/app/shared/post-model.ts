@@ -12,4 +12,5 @@ export interface PostModel {
   downVote: boolean;
   upVotes: number;
   downVotes: number;
+  fileCompressed: string; 
 }
