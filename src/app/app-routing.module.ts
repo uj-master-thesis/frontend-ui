@@ -11,7 +11,7 @@ import {AuthGuard} from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'view-post/:postName', component: ViewPostComponent, canActivate: [AuthGuard]},
+  {path: 'view-post/:postName', component: ViewPostComponent},
   {path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'list-subreddits', component: ListThreadsComponent},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard]},

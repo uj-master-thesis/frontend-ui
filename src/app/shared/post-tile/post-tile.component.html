@@ -12,6 +12,9 @@
     <div class="post-title">
       <a class="postname" href="{{post.url}}">{{post.postName}}</a>
     </div>
+    <div *ngIf="post.fileCompressed != null" style="margin-top:20px;">
+      <img class="images"  src="{{post.fileCompressed}}" width="250" height="150" />
+    </div>
     <div>
       <p [innerHtml]="post.description" class="post-text"></p>
     </div>

@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   postsCount!: number;
   commentsCount!: number;
   profileJson: string = "";
+  response: string = "";
   subscribed!: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private postService: PostService,
@@ -44,8 +45,19 @@ export class UserProfileComponent implements OnInit {
     console.log(a.target.result)
     console.log(this.subscribed)
     const changeSubscribedModel :SubscribedModel = {username: this.name, subscribed: this.subscribed}
-    const response = this.subscribeService.subscribe(changeSubscribedModel)
-    console.log('response', response)
+    this.subscribeService.subscribe(changeSubscribedModel).subscribe(data => {
+      this.response = data;
+    }, error => {
+      throwError(error);
+    })
+
+    this.subscribeService.isSubscribed(this.name).subscribe(
+      (data) => {
+        this.subscribed = data.subscribed;
+      }, error => {
+        throwError(error);
+      });
+    console.log('response', this.response)
   }
 
   ngOnInit(): void {

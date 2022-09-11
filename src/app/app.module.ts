@@ -55,7 +55,7 @@ import {environment as env} from '../environments/environment';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: [`http://localhost:5000/uploader/thread`, 'http://localhost:5000/uploader/post', 'http://localhost:5000/uploader/comment', 'http://localhost:5000/uploader/vote'],
+        allowedList: [`http://localhost:5000/uploader/thread`, 'http://localhost:5000/uploader/post', 'http://localhost:5000/uploader/comment', 'http://localhost:5000/uploader/vote', 'http://localhost:5000/subscribed/{username}', 'http://localhost:5000/subscribe'],
       },
     }),
     FormsModule,
