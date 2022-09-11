@@ -13,7 +13,7 @@ import {MicronewsSideBarComponent} from './shared/micronews-side-bar/micronews-s
 import {VoteButtonComponent} from './shared/vote-button/vote-button.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreateThreadComponent} from './thread/create-thread/create-thread.component';
 import {CreatePostComponent} from './post/create-post/create-post.component';
 import {ListThreadsComponent} from './thread/list-subreddits/list-threads.component';
@@ -58,6 +58,7 @@ import {environment as env} from '../environments/environment';
         allowedList: [`${env.dev.serverUrl}/api/authorize`],
       },
     }),
+    FormsModule,
   ],
   providers: [
     {
