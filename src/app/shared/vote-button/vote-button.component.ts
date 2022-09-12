@@ -8,6 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {VotePayload} from "./vote-payload";
 import {VoteType} from "./vote-type";
 import {throwError} from "rxjs";
+import { timer,  switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-vote-button',
@@ -79,7 +80,7 @@ export class VoteButtonComponent implements OnInit {
   }
 
   private updateVoteDetails() {
-    this.postService.getPost(this.post.postName).subscribe(post => {
+    timer(500).pipe(switchMap(() => this.postService.getPost(this.post.postName))).subscribe(post => {
       this.post = post;
     });
   }

@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CommentPayload} from 'src/app/comment/comment-payload';
 import {CommentService} from 'src/app/comment/comment.service';
 import {AuthService} from "@auth0/auth0-angular";
+import { timer,  switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-view-post',
@@ -74,7 +75,7 @@ export class ViewPostComponent implements OnInit {
   }
 
   private getPostById() {
-    this.postService.getPost(this.postName).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.postService.getPost(this.postName))).subscribe(data => {
       this.post = data;
     }, error => {
       throwError(error);
@@ -82,7 +83,7 @@ export class ViewPostComponent implements OnInit {
   }
 
   private getCommentsForPost() {
-    this.commentService.getAllCommentsForPost(this.postName).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.commentService.getAllCommentsForPost(this.postName))).subscribe(data => {
       this.comments = data;
     }, error => {
       throwError(error);
