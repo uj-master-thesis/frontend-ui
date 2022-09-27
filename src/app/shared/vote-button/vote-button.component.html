@@ -3,7 +3,8 @@
     <fa-icon (click)="upvotePost()" [icon]="faArrowUp" [style.color]="post.upVote ? 'green':''"
              class="upvote"></fa-icon>
   </div>
-  <div class="p-2 votecount">{{post.voteCount}}</div>
+  <div class="p-2 votecount"> <b [style.color]="'green'">{{post.upVotes}} </b> : <b [style.color]="'red'">{{post.downVotes}} </b> </div>
+  
   <div class="p-2">
     <fa-icon (click)="downvotePost()" [icon]="faArrowDown" [style.color]="post.downVote ? 'red':''"
              class="downvote"></fa-icon>

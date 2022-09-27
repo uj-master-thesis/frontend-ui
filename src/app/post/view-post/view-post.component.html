@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-11">
           <span>
-            <span class="subreddit-text"><a class="post-url" href="">{{post.subredditName}}</a></span>
+            <span class="subreddit-text"><a class="post-url" href="">{{post.threadName}}</a></span>
             <span> . Posted
               <span> {{post.duration}} </span>
               by
@@ -18,6 +18,9 @@
           </span>
           <hr/>
           <a routerLink="post.url" class="post-title">{{post.postName}}</a>
+          <div *ngIf="post.fileCompressed != null" style="margin-top:20px;">
+            <img class="images"  src="{{post.fileCompressed}}" width="250" height="150" (click)="ClickImage()"/>
+          </div>
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
           </div>
@@ -32,10 +35,10 @@
           <div style="margin-top: 60px;" *ngFor="let comment of comments">
             <div class="comment">
               <div class="username">
-                <a routerLink="/user/comment.username">{{comment.username}}</a>
+                <a routerLink="/user/comment.username">{{comment.userName}}</a>
               </div>
               <div>
-                <p>{{comment.duration}}</p>
+                <p>{{comment.timeStamp}}</p>
               </div>
               <b>{{comment.text}}</b>
             </div>

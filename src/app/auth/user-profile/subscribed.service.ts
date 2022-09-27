@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {SubscribedModel} from "./subscribed-model";
 import {SUBSCRIBED_MODELS} from "../../mocked/mock-subscribed-model";
@@ -15,15 +15,15 @@ export class SubscribeService {
   }
 
   isSubscribed(username: String): Observable<SubscribedResponse> {
-    console.log("username: ", username)
-    const url = 'http://localhost:8080/api/subscribed/' + username
-    console.log('url:', url)
-    return of(SUBSCRIBED_MODELS[0]);
+
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+
+    return this.http.get<SubscribedResponse>('http://localhost:5000/subscribed/' + username, httpOptions);
   }
 
   subscribe(subscribedModel: SubscribedModel): Observable<any> {
-    console.log("subscribedModel: ", subscribedModel)
-    // return this.http.post('http://localhost:8080/api/votes/', votePayload);
-    return of(SUBSCRIBED_MODELS);
+    return this.http.post('http://localhost:5000/subscribe', subscribedModel);
   }
 }

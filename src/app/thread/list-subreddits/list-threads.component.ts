@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ThreadModel} from '../thread-model';
 import {ThreadService} from '../thread.service';
-import {throwError} from 'rxjs';
+import {concatMap, switchMap, throwError} from 'rxjs';
+import { timer  } from 'rxjs';
+import { of  } from 'rxjs';
 
 @Component({
   selector: 'app-list-subreddits',
@@ -16,7 +18,8 @@ export class ListThreadsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subredditService.getAllSubreddits().subscribe(data => {
+
+    timer(1000).pipe(switchMap( () => this.subredditService.getAllSubreddits())).subscribe(data => {
       this.threads = data;
     }, error => {
       throwError(error);

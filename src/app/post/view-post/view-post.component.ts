@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CommentPayload} from 'src/app/comment/comment-payload';
 import {CommentService} from 'src/app/comment/comment.service';
 import {AuthService} from "@auth0/auth0-angular";
+import { timer,  switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-view-post',
@@ -47,14 +48,14 @@ export class ViewPostComponent implements OnInit {
         // @ts-ignore
         console.log(profile.name)
         // @ts-ignore
-        this.commentPayload.username = profile.name
+        this.commentPayload.username = profile?.email
       }
     );
   }
 
   postComment() {
     this.commentPayload.text = this.commentForm.get('text')?.value;
-    this.commentPayload.duration = Math.floor(Date.now() / 1000).toString();
+    this.commentPayload.timeStamp = Math.floor(Date.now() / 1000).toString();
     console.log(this.commentPayload)
     this.commentService.postComment(this.commentPayload).subscribe(data => {
       this.commentForm.get('text')?.setValue('');
@@ -65,8 +66,16 @@ export class ViewPostComponent implements OnInit {
     })
   }
 
+  ClickImage(){
+    var image = new Image();
+    image.src = this.post.fileCompressed;
+
+    var w = window.open("");
+    w!.document.write(image.outerHTML);
+  }
+
   private getPostById() {
-    this.postService.getPost(this.postName).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.postService.getPost(this.postName))).subscribe(data => {
       this.post = data;
     }, error => {
       throwError(error);
@@ -74,7 +83,7 @@ export class ViewPostComponent implements OnInit {
   }
 
   private getCommentsForPost() {
-    this.commentService.getAllCommentsForPost(this.postName).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.commentService.getAllCommentsForPost(this.postName))).subscribe(data => {
       this.comments = data;
     }, error => {
       throwError(error);

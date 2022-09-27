@@ -16,23 +16,19 @@ export class PostService {
   }
 
   getAllPosts(): Observable<Array<PostModel>> {
-    //   return this.http.get<Array<PostModel>>('http://localhost:8080/api/posts/');
-    return of(POST_MODELS);
+      return this.http.get<Array<PostModel>>('http://localhost:5000/api/post');
   }
 
   createPost(postPayload: CreatePostPayload): Observable<any> {
-    //   return this.http.post('http://localhost:8080/api/posts/', postPayload);
-    console.log(postPayload)
-    return of(postPayload);
+    return this.http.post('http://localhost:5000/uploader/post', postPayload);
+
   }
 
   getPost(postName: string): Observable<PostModel> {
-    return of(POST_MODELS[1])
-    // return this.http.get<PostModel>('http://localhost:8080/api/posts/' + id);
+    return this.http.get<PostModel>('http://localhost:5000/api/post/' + postName);
   }
 
   getAllPostsByUser(name: string): Observable<PostModel[]> {
-    return of([POST_MODELS[0], POST_MODELS[1]])
-    // return this.http.get<PostModel[]>('http://localhost:8080/api/posts/by-user/' + name);
+    return this.http.get<PostModel[]>('http://localhost:5000/api/post/by-user/' + name);
   }
 }

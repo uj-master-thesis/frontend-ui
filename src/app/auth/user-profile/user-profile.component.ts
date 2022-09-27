@@ -8,6 +8,7 @@ import {AuthService} from '@auth0/auth0-angular';
 import {SubscribeService} from "./subscribed.service";
 import {throwError} from "rxjs";
 import {SubscribedModel} from "./subscribed-model";
+import { timer,  switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   postsCount!: number;
   commentsCount!: number;
   profileJson: string = "";
+  response: string = "";
   subscribed!: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private postService: PostService,
@@ -28,12 +30,12 @@ export class UserProfileComponent implements OnInit {
 
     this.name = this.activatedRoute.snapshot.params['name'];
 
-    this.postService.getAllPostsByUser(this.name).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.postService.getAllPostsByUser(this.name))).subscribe(data => {
       this.posts = data;
       this.postsCount = data.length;
     });
 
-    this.commentService.getAllCommentsByUser(this.name).subscribe(data => {
+    timer(500).pipe(switchMap(() => this.commentService.getAllCommentsByUser(this.name))).subscribe(data => {
       this.comments = data;
       this.commentsCount = data.length;
     });
@@ -44,15 +46,26 @@ export class UserProfileComponent implements OnInit {
     console.log(a.target.result)
     console.log(this.subscribed)
     const changeSubscribedModel :SubscribedModel = {username: this.name, subscribed: this.subscribed}
-    const response = this.subscribeService.subscribe(changeSubscribedModel)
-    console.log('response', response)
+    this.subscribeService.subscribe(changeSubscribedModel).subscribe(data => {
+      this.response = data;
+    }, error => {
+      throwError(error);
+    })
+
+    // this.subscribeService.isSubscribed(this.name).subscribe(
+    //   (data) => {
+    //     this.subscribed = data.subscribed;
+    //   }, error => {
+    //     throwError(error);
+    //   });
+    console.log('response', this.response)
   }
 
   ngOnInit(): void {
     this.auth.user$.subscribe(
       (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
     );
-    this.subscribeService.isSubscribed(this.name).subscribe(
+    timer(1000).pipe(switchMap(() => this.subscribeService.isSubscribed(this.name))).subscribe(
       (data) => {
         this.subscribed = data.subscribed;
       }, error => {

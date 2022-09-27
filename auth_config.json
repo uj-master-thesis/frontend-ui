@@ -2,5 +2,5 @@
     "domain": "dev-x5ozep80.eu.auth0.com",
     "clientId": "26wvJBYQuSH43KFpud3hFWqsBIe32uzf",
     "audience": "https://micronews/api",
-    "serverUrl": "https://localhost:7110/"
+    "serverUrl": "http://localhost:5000/"
 }
